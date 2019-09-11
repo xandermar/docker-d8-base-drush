@@ -21,6 +21,8 @@ RUN dpkg -i mysql-apt-config_0.8.13-1_all.deb
 RUN apt-get update
 RUN apt-get -y install mysql-server mysql-client
 
+RUN update-rc.d mysql defaults
+
 EXPOSE 3306 
 
 RUN git clone https://github.com/xandermar/xandermar.github.io.git
