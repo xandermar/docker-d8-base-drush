@@ -12,11 +12,11 @@ RUN apt-get update && \
 RUN apt-get -y install wget lsb-release gnupg
     
 # install mysql
-RUN curl -o /tmp/mysql.deb https://dev.mysql.com/get/mysql-apt-config_0.8.12-1_all.deb
+RUN wget https://dev.mysql.com/get/mysql-apt-config_0.8.13-1_all.deb
 RUN echo mysql-apt-config mysql-apt-config/select-server select mysql-5.7 | debconf-set-selections
 RUN echo mysql-community-server mysql-community-server/root-pass $DB_ROOT_PASSWORD rot | debconf-set-selections
 RUN echo mysql-community-server mysql-community-server/re-root-pass $DB_ROOT_PASSWORD rot | debconf-set-selections
-RUN dpkg -i /tmp/mysql.deb
+RUN dpkg -i mysql-apt-config_0.8.13-1_all.deb
 
 RUN apt-get update
 RUN apt-get -y install mysql-server mysql-client
